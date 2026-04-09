@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>太重集团全球业务展示二维码</title>
+    <!-- 引入稳定版 QRCode 库 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            font-size: 22px;
+        }
+        /* 二维码容器，必须给宽高 */
+        #qrcode {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .tip {
+            margin-top: 16px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 10px 24px;
+            background: #0d6efd;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>太重集团全球业务展示二维码</h2>
+        <!-- 二维码容器 -->
+        <div id="qrcode"></div>
+        <p class="tip">扫码即可查看企业视频、音频、介绍及文档</p>
+        <button class="btn" onclick="regenerateQr()">重新生成二维码</button>
+    </div>
+
+    <script>
+        // 核心：H5 页面的 URL（本地测试直接写文件名，部署后替换为线上地址）
+        // 本地：两个文件放在同一文件夹，直接写 h5.html
+        const H5_URL = "http://172.20.10.8:5173/sc-datav/index.html";
+
+        // 等待 DOM 完全加载后再生成二维码
+        document.addEventListener("DOMContentLoaded", function() {
+            generateQrCode();
+        });
+
+        // 生成二维码的核心函数
+        function generateQrCode() {
+            // 清空容器，防止重复生成
+            const qrContainer = document.getElementById("qrcode");
+            qrContainer.innerHTML = "";
+
+            try {
+                // 用 QRCode.js 生成（比 qrcode 库更稳定，兼容性更好）
+                new QRCode(qrContainer, {
+                    text: H5_URL,
+                    width: 280,
+                    height: 280,
+                    colorDark: "#0a1a3d", // 科技蓝深色
+                    colorLight: "#ffffff", // 白色背景
+                    correctLevel: QRCode.CorrectLevel.H // 最高纠错率，扫码更稳
+                });
+                console.log("✅ 二维码生成成功，指向：" + H5_URL);
+            } catch (err) {
+                console.error("❌ 二维码生成失败：", err);
+                qrContainer.innerHTML = "<p style='color:red; padding:20px;'>二维码生成失败，请检查网络</p>";
+            }
+        }
+
+        // 重新生成按钮
+        function regenerateQr() {
+            generateQrCode();
+        }
+    </script>
+</body>
+</html>

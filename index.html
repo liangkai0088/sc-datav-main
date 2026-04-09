@@ -1,0 +1,90 @@
+<!-- <!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>大屏可视化</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太重集团全球业务展示</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft YaHei", sans-serif; }
+        body { background: #f0f2f5; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .container { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+        h2 { color: #1a1a1a; margin-bottom: 20px; text-align: center; font-size: 24px; }
+        .section { margin-bottom: 24px; padding: 16px; background: #f8f9fa; border-radius: 8px; }
+        h3 { color: #333; margin-bottom: 12px; font-size: 18px; }
+        video, audio { width: 100%; border-radius: 6px; background: #000; }
+        .text-content { line-height: 1.8; color: #444; margin-bottom: 12px; font-size: 15px; }
+        .btn { padding: 10px 20px; background: #0d6efd; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
+        .btn:hover { background: #0b5ed7; }
+        .file-item { display: flex; gap: 12px; align-items: center; padding: 10px; background: #e9ecef; border-radius: 6px; margin-bottom: 8px; }
+        .file-item a { color: #0d6efd; text-decoration: none; flex: 1; }
+        .file-item a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>太重集团全球业务展示</h2>
+
+        <!-- 1. 视频 -->
+        <div class="section">
+            <h3>🎬 企业宣传视频</h3>
+            <video controls poster="https://via.placeholder.com/800x450/0a1a3d/ffffff?text=太重集团宣传视频">
+                <source src="https://www.w3school.com.cn/i/movie.mp4" type="video/mp4">
+                您的浏览器不支持视频播放
+            </video>
+        </div>
+
+        <!-- 2. 音频 -->
+        <div class="section">
+            <h3>🎵 企业介绍音频</h3>
+            <audio controls>
+                <source src="https://www.w3school.com.cn/i/horse.ogg" type="audio/ogg">
+                您的浏览器不支持音频播放
+            
+        </div>
+
+        <!-- 3. 文本+朗读 -->
+        <div class="section">
+            <h3>📝 企业介绍（支持朗读）</h3>
+            <p class="text-content" id="readText">
+                太原重型机械集团有限公司（太重集团），始建于1950年，是新中国自行设计、建造的第一座重型机器厂，属于国家特大型骨干企业。主要从事起重、挖掘、轧钢、煤化工等重型装备的研发制造，产品远销全球。
+            </p>
+            <button class="btn" onclick="readTextAloud()">🔊 点击朗读文本</button>
+        </div>
+
+        <!-- 4. 文件预览与下载 -->
+        <div class="section">
+            <h3>📄 企业文档（预览+下载）</h3>
+            <div class="file-item">
+                <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank">📄 预览《2025年报》</a>
+                <a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" download="2025年报.pdf">⬇️ 下载PDF</a>
+            </div>
+            <div class="file-item">
+                <a href="https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.docx" download="产品手册.docx">⬇️ 下载Word</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function readTextAloud() {
+            const text = document.getElementById('readText').innerText;
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-CN';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
